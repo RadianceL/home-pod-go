@@ -21,7 +21,7 @@ func LoadConfig(configPath string) (c *config.Config, err error) {
 	c.Web.ReadTimeout = v.GetInt("web.read_timeout")
 	c.Web.WriteTimeout = v.GetInt("web.write_timeout")
 	c.Web.IdleTimeout = v.GetInt("web.idle_timeout")
-	c.Sqlite.Path = v.GetString("sqlite3.path")
+	c.SQLite.Path = v.GetString("sqlite3.path")
 	c.MySQL.Host = v.GetString("mysql.host")
 	c.MySQL.Port = v.GetInt("mysql.port")
 	c.MySQL.User = v.GetString("mysql.user")

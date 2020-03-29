@@ -22,7 +22,7 @@ func RecoveryMiddleware() gin.HandlerFunc {
 		defer func() {
 			if err := recover(); err != nil {
 				stack := stack(3)
-				fmt.Println("页面报错",string(stack))//这里会打印出错栈信息
+				fmt.Println("页面报错", string(stack)) //这里会打印出错栈信息
 				c.JSON(500, gin.H{"message": "Recovery"})
 				c.Abort()
 				return
@@ -42,7 +42,7 @@ func stack(skip int) []byte {
 		if !ok {
 			break
 		}
-		fmt.Fprintf(buf, "%s:%d (0x%x)\n", file, line, pc)
+		_, _ = fmt.Fprintf(buf, "%s:%d (0x%x)\n", file, line, pc)
 		if file != lastFile {
 			data, err := ioutil.ReadFile(file)
 			if err != nil {
@@ -51,7 +51,7 @@ func stack(skip int) []byte {
 			lines = bytes.Split(data, []byte{'\n'})
 			lastFile = file
 		}
-		fmt.Fprintf(buf, "\t%s: %s\n", function(pc), source(lines, line))
+		_, _ = fmt.Fprintf(buf, "\t%s: %s\n", function(pc), source(lines, line))
 	}
 	return buf.Bytes()
 }
@@ -72,8 +72,8 @@ func function(pc uintptr) []byte {
 		return dunno
 	}
 	name := []byte(fn.Name())
-	if lastslash := bytes.LastIndex(name, slash); lastslash >= 0 {
-		name = name[lastslash+1:]
+	if lastSlash := bytes.LastIndex(name, slash); lastSlash >= 0 {
+		name = name[lastSlash+1:]
 	}
 	if period := bytes.Index(name, dot); period >= 0 {
 		name = name[period+1:]

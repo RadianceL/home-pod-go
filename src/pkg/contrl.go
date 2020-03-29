@@ -15,10 +15,10 @@ import (
 func InitDB(config *config.Config) {
 	var gdb *gorm.DB
 	var err error
-	if config.DataSource.DBType == "mysql"{
+	if config.DataSource.DBType == "mysql" {
 		config.DataSource.DSN = config.MySQL.DSN()
-	}else if  config.DataSource.DBType == "sqlite3" {
-		config.DataSource.DSN = config.Sqlite.DSN()
+	} else if config.DataSource.DBType == "sqlite3" {
+		config.DataSource.DSN = config.SQLite.DSN()
 	}
 	logger.Info(config.DataSource.DSN)
 	gdb, err = gorm.Open(config.DataSource.DBType, config.DataSource.DSN)
