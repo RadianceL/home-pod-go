@@ -6,7 +6,6 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// GetQueryToStrE
 func GetQueryToStrE(c *gin.Context, key string) (string, error) {
 	str, ok := c.GetQuery(key)
 	if !ok {
@@ -15,7 +14,6 @@ func GetQueryToStrE(c *gin.Context, key string) (string, error) {
 	return str, nil
 }
 
-// GetQueryToStr
 func GetQueryToStr(c *gin.Context, key string, defaultValues ...string) string {
 	var defaultValue string
 	if len(defaultValues) > 0 {
@@ -28,7 +26,6 @@ func GetQueryToStr(c *gin.Context, key string, defaultValues ...string) string {
 	return str
 }
 
-// QueryToUintE
 func GetQueryToUintE(c *gin.Context, key string) (uint, error) {
 	str, err := GetQueryToStrE(c, key)
 	if err != nil {
@@ -37,7 +34,6 @@ func GetQueryToUintE(c *gin.Context, key string) (uint, error) {
 	return convert.ToUintE(str)
 }
 
-// QueryToUint
 func GetQueryToUint(c *gin.Context, key string, defaultValues ...uint) uint {
 	var defaultValue uint
 	if len(defaultValues) > 0 {
@@ -50,7 +46,6 @@ func GetQueryToUint(c *gin.Context, key string, defaultValues ...uint) uint {
 	return val
 }
 
-// QueryToUintE
 func GetQueryToUint64E(c *gin.Context, key string) (uint64, error) {
 	str, err := GetQueryToStrE(c, key)
 	if err != nil {
@@ -59,7 +54,6 @@ func GetQueryToUint64E(c *gin.Context, key string) (uint64, error) {
 	return convert.ToUint64E(str)
 }
 
-// QueryToUint
 func GetQueryToUint64(c *gin.Context, key string, defaultValues ...uint64) uint64 {
 	var defaultValue uint64
 	if len(defaultValues) > 0 {
