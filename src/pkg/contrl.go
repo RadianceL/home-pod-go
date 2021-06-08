@@ -1,12 +1,12 @@
 package models
 
 import (
-	"app-test/src/pkg/config"
-	"app-test/src/pkg/datasource"
-	"app-test/support/logger"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
+	"go-gin-template/src/pkg/config"
+	"go-gin-template/src/pkg/datasource"
+	"go-gin-template/support/logger"
 	"log"
 	"os"
 	"time"

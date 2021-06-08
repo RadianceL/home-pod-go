@@ -1,11 +1,11 @@
 package AppConfig
 
 import (
-	"app-test/src/pkg/config"
 	"github.com/spf13/viper"
+	"go-gin-template/src/pkg/config"
 )
 
-// 加载配置
+// LoadConfig 加载配置
 func LoadConfig(configPath string) (c *config.Config, err error) {
 	v := viper.New()
 	v.SetConfigFile(configPath)

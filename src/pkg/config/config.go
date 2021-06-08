@@ -4,7 +4,6 @@ import (
 	"fmt"
 )
 
-// Config 配置参数
 type Config struct {
 	Web        Web
 	DataSource DataSource
@@ -12,7 +11,6 @@ type Config struct {
 	SQLite     SQLite
 }
 
-// 站点配置参数
 type Web struct {
 	Domain       string
 	StaticPath   string
@@ -32,7 +30,6 @@ type DataSource struct {
 	DSN                string
 }
 
-// MySQL mysql配置参数
 type MySQL struct {
 	Host       string
 	Port       int
@@ -42,18 +39,15 @@ type MySQL struct {
 	Parameters string
 }
 
-// MySQL 数据库连接串
-func (a MySQL) DSN() string {
+func (mysql MySQL) DSN() string {
 	return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?%s",
-		a.User, a.Password, a.Host, a.Port, a.DBName, a.Parameters)
+		mysql.User, mysql.Password, mysql.Host, mysql.Port, mysql.DBName, mysql.Parameters)
 }
 
-// SQLite 配置参数
 type SQLite struct {
 	Path string
 }
 
-// Sqlite3 数据库连接串
-func (a SQLite) DSN() string {
-	return a.Path
+func (sqlite SQLite) DSN() string {
+	return sqlite.Path
 }

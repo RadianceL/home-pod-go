@@ -1,20 +1,20 @@
 package response
 
 import (
-	"app-test/support/request"
+	"go-gin-template/support/request"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 const (
-	SUCCESS_CODE          = 20000      //成功的状态码
-	FAIL_CODE             = 30000      //失败的状态码
-	MD5_PREFIX            = "jkfldfsf" //MD5加密前缀字符串
-	TOKEN_KEY             = "X-Token"  //页面token键名
-	USER_ID_Key           = "X-USERID" //页面用户ID键名
-	USER_UUID_Key         = "X-UUID"   //页面UUID键名
-	SUPER_ADMIN_ID uint64 = 956986 // 超级管理员账号ID
+	SuccessCode           = 20000      /* 成功的状态码 */
+	FailCode              = 30000      /* 失败的状态码 */
+	MD5_PREFIX            = "jkfldfsf" /* MD5加密前缀字符串 */
+	TOKEN_KEY             = "X-Token"  /* 页面token键名 */
+	USER_ID_Key           = "X-USERID" /* 页面用户ID键名 */
+	USER_UUID_Key         = "X-UUID"   /* 页面UUID键名 */
+	SUPER_ADMIN_ID uint64 = 956986     /* 超级管理员账号ID */
 )
 
 type ResponseModel struct {
@@ -30,19 +30,19 @@ type ResponseModelBase struct {
 
 // 响应成功
 func ResSuccess(c *gin.Context, v interface{}) {
-	ret := ResponseModel{Code: SUCCESS_CODE, Message: "ok", Data: v}
+	ret := ResponseModel{Code: SuccessCode, Message: "ok", Data: v}
 	ResJSON(c, http.StatusOK, &ret)
 }
 
 // 响应成功
 func ResSuccessMsg(c *gin.Context) {
-	ret := ResponseModelBase{Code: SUCCESS_CODE, Message: "ok"}
+	ret := ResponseModelBase{Code: SuccessCode, Message: "ok"}
 	ResJSON(c, http.StatusOK, &ret)
 }
 
 // 响应失败
 func ResFail(c *gin.Context, msg string) {
-	ret := ResponseModelBase{Code: FAIL_CODE, Message: msg}
+	ret := ResponseModelBase{Code: FailCode, Message: msg}
 	ResJSON(c, http.StatusOK, &ret)
 }
 
@@ -60,13 +60,13 @@ func ResJSON(c *gin.Context, status int, v interface{}) {
 
 // 响应错误-服务端故障
 func ResErrSrv(c *gin.Context, err error) {
-	ret := ResponseModelBase{Code: FAIL_CODE, Message: "服务端故障"}
+	ret := ResponseModelBase{Code: FailCode, Message: "服务端故障"}
 	ResJSON(c, http.StatusOK, &ret)
 }
 
 // 响应错误-用户端故障
 func ResErrCli(c *gin.Context, err error) {
-	ret := ResponseModelBase{Code: FAIL_CODE, Message: "err"}
+	ret := ResponseModelBase{Code: FailCode, Message: "err"}
 	ResJSON(c, http.StatusOK, &ret)
 }
 
@@ -83,7 +83,7 @@ type ResponsePage struct {
 
 // 响应成功-分页数据
 func ResSuccessPage(c *gin.Context, total uint64, list interface{}) {
-	ret := ResponsePage{Code: SUCCESS_CODE, Message: "ok", Data: ResponsePageData{Total: total, Items: list}}
+	ret := ResponsePage{Code: SuccessCode, Message: "ok", Data: ResponsePageData{Total: total, Items: list}}
 	ResJSON(c, http.StatusOK, &ret)
 }
 

@@ -1,4 +1,4 @@
-module app-test
+module go-gin-template
 
 go 1.16
 

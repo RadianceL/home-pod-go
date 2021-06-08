@@ -1,9 +1,9 @@
 package request
 
 import (
-	"app-test/support/convert"
 	"errors"
 	"github.com/gin-gonic/gin"
+	"go-gin-template/support/convert"
 )
 
 func GetQueryToStrE(c *gin.Context, key string) (string, error) {

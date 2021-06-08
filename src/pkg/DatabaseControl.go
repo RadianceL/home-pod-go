@@ -1,8 +1,8 @@
 package models
 
-import "app-test/src/pkg/datasource"
+import "go-gin-template/src/pkg/datasource"
 
-// Create
-func Create(value interface{}) error{
+// Create 方法执行
+func Create(value interface{}) error {
 	return datasource.DB.Create(value).Error
 }

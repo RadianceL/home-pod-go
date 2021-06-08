@@ -1,40 +1,41 @@
 package application
 
 import (
-	models "app-test/src/pkg"
-	"app-test/src/pkg/config"
-	AppConfig "app-test/src/web/config"
-	"app-test/src/web/middleware"
-	routers "app-test/src/web/router"
-	"app-test/support/convert"
-	"app-test/support/logger"
 	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
+	models "go-gin-template/src/pkg"
+	"go-gin-template/src/pkg/config"
+	AppConfig "go-gin-template/src/web/config"
+	"go-gin-template/src/web/middleware"
+	routers "go-gin-template/src/web/router"
+	"go-gin-template/support/convert"
+	"go-gin-template/support/logger"
 	"net/http"
 	"time"
 )
 
-// 运行
+// Run 运行
 func Run(configPath string) {
-	if configPath == ""{
-		configPath="./config.yaml"
+	// 获取配置路径
+	if configPath == "" {
+		configPath = "./config.yaml"
 	}
-	logger.InitLog("debug","./data/log/log.log")
-
+	// 初始化日志配置
+	logger.InitLog("debug", "./data/log/log.log")
 	// 加载配置
 	loadConfig, err := AppConfig.LoadConfig(configPath)
 	if err != nil {
 		panic(err)
 	}
-
+	// 初始化数据
 	initDB(loadConfig)
-	logger.Debug("数据库加载完成.......")
-
+	// 初始化web服务
 	initWeb(loadConfig)
 }
 
-func initDB(config *config.Config){
+func initDB(config *config.Config) {
 	models.InitDB(config)
+	logger.Debug("数据库加载完成.......")
 }
 
 func initWeb(loadConfig *config.Config) {

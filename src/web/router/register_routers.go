@@ -1,9 +1,8 @@
 package routers
 
 import (
-	"app-test/src/web/controller"
 	"github.com/gin-gonic/gin"
-
+	"go-gin-template/src/web/controller"
 )
 
 func RegisterRouterSys(app *gin.RouterGroup) {
